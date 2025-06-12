@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patrick & Karol 💍</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #ffe0e9, #ffffff);
+      color: #444;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .timer-container {
+      margin: 40px auto;
+      max-width: 600px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+
+    .timer {
+      font-size: 1.5rem;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    .highlight {
+      font-size: 1.25rem;
+      color: #e91e63;
+      font-weight: 600;
+    }
+
+    .love-msg {
+      margin-top: 30px;
+      font-size: 1.2rem;
+    }
+
+    .countdown {
+      font-size: 1.8rem;
+      margin-top: 20px;
+      color: #d32f2f;
+    }
+
+    .timeline {
+      margin-top: 50px;
+    }
+
+    .event {
+      background: #fff;
+      margin: 15px auto;
+      max-width: 600px;
+      padding: 20px;
+      border-left: 6px solid #e91e63;
+      text-align: left;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .event h3 {
+      margin: 0 0 10px;
+      color: #e91e63;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+      margin-top: 40px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 224, 233, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 20px;
+      max-width: 300px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    .popup h3 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+
+    .popup p {
+      margin-bottom: 15px;
+    }
+
+    .popup .contador {
+      font-size: 2rem;
+      color: #d32f2f;
+      font-weight: bold;
+    }
+
+    .carta-container {
+      margin: 50px auto;
+      max-width: 600px;
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      padding: 30px 20px;
+    }
+
+    .carta-page {
+      display: none;
+      font-size: 1rem;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .carta-page.active {
+      display: block;
+    }
+
+    .carta-nav {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .carta-nav button {
+      background-color: #e91e63;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .carta-nav button:hover {
+      background-color: #c2185b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h3>Feliz Dia dos Namorados, meu amor!</h3>
+      <p>E para comemorar este dia, eu fiz esta pequena surpresinha.</p>
+      <p>Para que você nunca esqueça do meu amor por você!</p>
+      <div class="contador" id="contador">10</div>
+    </div>
+  </div>
+
+  <h1>Patrick & Karol ❤️</h1>
+  <p class="highlight">Estamos juntos há...</p>
+
+  <div class="timer-container">
+    <div class="timer" id="tempoTotal"></div>
+    <div class="timer" id="relogio"></div>
+    <p class="love-msg">E a cada instante que passa, meu amor só cresce por você.<br>
+    É uma honra estar ao seu lado partilhando minha vida com você.</p>
+  </div>
+
+  <div class="timer-container">
+    <p class="highlight">Faltam para o nosso casamento:</p>
+    <div class="countdown" id="contagemCasamento"></div>
+  </div>
+
+  <div class="gallery">
+    <img src="1.png" alt="Foto 1">
+    <img src="2.png" alt="Foto 2">
+    <img src="3.png" alt="Foto 3">
+    <img src="4.png" alt="Foto 4">
+    <img src="5.png" alt="Foto 5">
+    <img src="6.png" alt="Foto 6">
+    <img src="7.png" alt="Foto 7">
+    <img src="8.png" alt="Foto 8">
+    <img src="9.png" alt="Foto 9">
+    <img src="10.png" alt="Foto 10">
+  </div>
+
+  <div class="carta-container">
+    <div id="pagina1" class="carta-page active">
+      <h3>💌 Para você, meu amor.</h3>
+      <p>Nós nos conhecemos num rolê qualquer… um dia despretensioso, em que você tinha ido a uma festa de 15 anos e acabou aparecendo ali na praça… onde eu estava.</p>
+      <p>Mal sabíamos que naquele momento simples seria o começo da melhor fase de nossas vidas.</p>
+      <p>Não teve um momento específico tipo filme, em que eu soube na hora que era você.</p>
+      <p>Mas houve então algo muito mais verdadeiro, a cada dia, a cada minuto, eu fui sentindo mais e mais...</p>
+    </div>
+    <div id="pagina2" class="carta-page">
+      <p>Com o tempo passando, fui percebendo o quanto você era minha, o quanto me fazia bem, e o quanto estar com você tornava tudo mais leve.</p>
+      <p>Não foi um raio que caiu do céu… foi construção. Foi verdade. Foi amor. Nós construímos isso. Passo… a… passo… degrau… a degrau…</p>
+      <p>A gente começou do jeitinho que dava. Ali naquele quarto apertado na casa da minha mãe, com guarda-roupa, cama de casal, TV no teto, prateleiras e PC tudo socado num lugar só.</p>
+      <p>Era pequeno, mas nosso amor ali floresceu. Foi ali que nasceu a Personalizados Dix, nossa primeira empresa, o que deixou tudo muito mais apertado kkkkkk.</p>
+    </div>
+    <div id="pagina3" class="carta-page">
+      <p>Eu vi você dar seus primeiros passos no trabalho, cuidando do Instagram da Nana Alimentos. Depois veio a Vila da Pizza. Aí você virou quase super-heroína: Unimed de manhã, pizzaria à noite, quase morreu e viu um pouco do que eu passo kkkkkk.</p>
+      <p>E mesmo com a rotina pesada, você nunca parou de sonhar comigo. Sempre arrumava um jeito de cuidar da gente, de aprender, de ajudar, de crescer junto.</p>
+      <p>Teve a Bauducco, os balões bubble, o pegue e monte, os eventos, os kits…</p>
+    </div>
+    <div id="pagina4" class="carta-page">
+      <p>Hoje você tá comigo mais firme e crescendo com a PK Drones, e faz de tudo: grava, edita, fotografa, narra, filma…</p>
+      <p>Mas o mais bonito é que você nunca deixou de ser você. Amorosa, engraçada, forte, paciente — muito, mas muuuito paciente comigo kkkkk. Mulher-maravilha de verdade!</p>
+      <p>Estamos às vésperas do nosso casamento. E só de pensar que vou te chamar de esposa todos os dias, meu coração pulsa mais forte de alegria. Estamos realizando esse sonho.</p>
+      <p>O próximo? Formar nossa família, ter nosso filho, construir ainda mais do que já construímos.</p>
+    </div>
+    <div id="pagina5" class="carta-page">
+      <p>Amor, você é a melhor parte da minha vida. Minha parceira em tudo. Obrigado por estar comigo até aqui. Obrigado por não desistir, por rir comigo, por me entender, por me empurrar pra frente quando eu travo.</p>
+      <p>Por ser paciente e resiliente. Você é incrível. Obrigado por ser você.</p>
+      <p>Te amo mais do que eu consigo escrever aqui. E se essa página existe, é só pra te lembrar disso. Te amo!<br>Ass.: Patrick</p>
+    </div>
+    <div class="carta-nav">
+      <button onclick="voltarPagina()">⬅ Voltar</button>
+      <button onclick="avancarPagina()">Avançar ➡</button>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="event">
+      <h3>💋 Nosso primeiro beijo</h3>
+      <p>Foi no dia <strong>09 de dezembro de 2018</strong>, por volta das 15h. Um momento que mudou nossas vidas para sempre.</p>
+    </div>
+    <div class="event">
+      <h3>💑 Pedido de namoro</h3>
+      <p>No dia <strong>18 de janeiro de 2019</strong>, às 21h, começamos oficialmente essa linda história de amor.</p>
+    </div>
+    <div class="event">
+      <h3>🏠 Começamos a morar juntos</h3>
+      <p>No dia <strong>14 de março</strong>, começamos uma nova fase lado a lado, construindo nosso lar.</p>
+    </div>
+    <div class="event">
+      <h3>💍 O grande dia</h3>
+      <p>Nosso casamento será no dia <strong>26 de julho de 2025</strong> às 9h40. E estaremos prontos para dar o próximo passo mais importante das nossas vidas.</p>
+    </div>
+  </div>
+
+  <script>
+    const dataInicio = new Date('2018-12-09T15:00:00');
+    const dataCasamento = new Date('2025-07-26T09:40:00');
+
+    function calcularTempoDetalhado(inicio, agora) {
+      let anos = agora.getFullYear() - inicio.getFullYear();
+      let meses = agora.getMonth() - inicio.getMonth();
+      let dias = agora.getDate() - inicio.getDate();
+
+      if (dias < 0) {
+        meses--;
+        const ultimoDiaMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+        dias += ultimoDiaMesAnterior;
+      }
+      if (meses < 0) {
+        anos--;
+        meses += 12;
+      }
+
+      return { anos, meses, dias };
+    }
+
+    function atualizaTimers() {
+      const agora = new Date();
+      const tempoRestante = dataCasamento - agora;
+
+      const { anos, meses, dias } = calcularTempoDetalhado(dataInicio, agora);
+      const horasHoje = agora.getHours();
+      const minutosHoje = agora.getMinutes();
+      const segundosHoje = agora.getSeconds();
+
+      document.getElementById('tempoTotal').textContent = `${anos} anos, ${meses} meses e ${dias} dias juntos ❤️`;
+      document.getElementById('relogio').textContent = `${String(horasHoje).padStart(2, '0')}:${String(minutosHoje).padStart(2, '0')}:${String(segundosHoje).padStart(2, '0')}`;
+
+      if (tempoRestante > 0) {
+        const diasFaltando = Math.floor(tempoRestante / (1000 * 60 * 60 * 24));
+        const horasFaltando = Math.floor((tempoRestante / (1000 * 60 * 60)) % 24);
+        const minutosFaltando = Math.floor((tempoRestante / (1000 * 60)) % 60);
+        const segundosFaltando = Math.floor((tempoRestante / 1000) % 60);
+
+        document.getElementById('contagemCasamento').textContent =
+          `${diasFaltando} dias, ${horasFaltando} horas, ${minutosFaltando} minutos e ${segundosFaltando} segundos`;
+      } else {
+        document.getElementById('contagemCasamento').textContent =
+          'Hoje é o grande dia! 💍';
+      }
+    }
+
+    function iniciarContadorPopup() {
+      let contador = 10;
+      const elemento = document.getElementById('contador');
+      const popup = document.getElementById('popup');
+
+      const intervalo = setInterval(() => {
+        contador--;
+        elemento.textContent = contador;
+        if (contador === 0) {
+          clearInterval(intervalo);
+          popup.style.display = 'none';
+        }
+      }, 1000);
+    }
+
+    let paginaAtual = 1;
+    const totalPaginas = 5;
+
+    function mostrarPagina(n) {
+      for (let i = 1; i <= totalPaginas; i++) {
+        document.getElementById(`pagina${i}`).classList.remove('active');
+      }
+      document.getElementById(`pagina${n}`).classList.add('active');
+    }
+
+    function avancarPagina() {
+      if (paginaAtual < totalPaginas) {
+        paginaAtual++;
+        mostrarPagina(paginaAtual);
+      }
+    }
+
+    function voltarPagina() {
+      if (paginaAtual > 1) {
+        paginaAtual--;
+        mostrarPagina(paginaAtual);
+      }
+    }
+
+    setInterval(atualizaTimers, 1000);
+    atualizaTimers();
+    iniciarContadorPopup();
+  </script>
+</body>
+</html>
